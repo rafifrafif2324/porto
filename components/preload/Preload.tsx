@@ -16,31 +16,32 @@ export default function Preload({ endedLoading }: PreloadProps) {
 
   useEffect(() => {
     if (!textRef.current) return;
-
+  
     const tl = gsap.timeline({ repeat: -1 });
+  
+    const handleComplete = (word: string) => (): void => {
+      if (textRef.current) {
+        textRef.current.innerText = word;
+      }
+    };
+  
     words.forEach((word) => {
       tl.to(textRef.current, {
         opacity: 0,
         duration: 0,
-        onComplete: () => {
-          if (textRef.current) {
-            textRef.current.innerText = word;
-          }
-        }
+        onComplete: handleComplete(word),
       })
-      .to(textRef.current, {
-        opacity: 1,
-        duration: 0,
-      })
-      .to(textRef.current, {
-        opacity: 0,
-        duration: 0.1,
-        delay: 0.1,
-      });
+        .to(textRef.current, { opacity: 1, duration: 0 })
+        .to(textRef.current, { opacity: 0, duration: 0.1, delay: 0.1 });
     });
-
-    return () => tl.kill();
+  
+    // ✅ Proper fix — just kill timeline, do not return the result
+    return () => {
+      tl.kill(); // panggil tapi tidak return Timeline-nya
+    };
   }, []);
+  
+  
 
   return (
     <div
