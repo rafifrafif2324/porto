@@ -13,7 +13,7 @@ import { useRef } from "react";
 import { wrap } from "@motionone/utils";
 
 interface ParallaxTextProps {
-  children: string;
+  children: React.ReactNode;
   baseVelocity: number;
   direction: number;
 }

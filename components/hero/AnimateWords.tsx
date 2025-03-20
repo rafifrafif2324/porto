@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { motion, useInView } from "framer-motion"
-import { useEffect, useRef } from "react"
-import { useAnimation } from "framer-motion"
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useAnimation } from "framer-motion";
 
 interface AnimateWordsProps {
-  title: string
-  style: string
+  title: string;
+  style?: string;
 }
 
 export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
-  const ctrls = useAnimation()
-  const ref = useRef(null)
-  const inView = useInView(ref)
+  const ctrls = useAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref);
 
   useEffect(() => {
     if (inView) {
-      ctrls.start("animate")
+      ctrls.start("animate");
     }
-  }, [ctrls, inView])
+  }, [ctrls, inView]);
 
   const wordAnimation = {
     initial: {
@@ -34,13 +34,13 @@ export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
         duration: 1,
       },
     },
-  }
+  };
 
   return (
     <h1 aria-label={title} role="heading">
       <motion.span
         ref={ref}
-        className="flex flex-col overflow-hidden text-center text-[96px] font-extrabold leading-[0.8em] text-zinc-800 dark:text-zinc-200 sm:text-[120px] sm:leading-[0.85em] md:text-[155.5px] lg:text-[215px]"
+        className="flex flex-col overflow-hidden text-center" // ✅ Hapus text-[96px] dan lainnya
       >
         {title.split(" ").map((word, index) => (
           <motion.div
@@ -63,5 +63,5 @@ export const AnimateWords = ({ title, style }: AnimateWordsProps) => {
         ))}
       </motion.span>
     </h1>
-  )
-}
+  );
+};

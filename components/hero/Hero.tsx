@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import HeroText from "./HeroText";
+// import HeroText from "./HeroText";
 import ParallaxText from "./ParallaxText";
 import HeroGraphic from "./HeroGraphic";
 import DigitalGlobe from "../DigitalGlobe";
@@ -24,7 +24,7 @@ export default function Hero() {
       />
 
       <HeroGraphic />
-      <HeroText />
+      {/* <HeroText /> */}
 
       {/* ⬇️ Ubah ParallaxText jadi z-10 agar DI BAWAH overlay */}
       <div className="absolute bottom-24 left-0 w-full z-[60] overflow-hidden">
@@ -38,14 +38,25 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* <div className="mt-5 w-full overflow-hidden z-10">
-        <ParallaxText direction={500} baseVelocity={-1}>
-          Data Analyst - Business Analyst
-        </ParallaxText>
-        <ParallaxText direction={-500} baseVelocity={1}>
-          Data Scientist - Machine Learning Engineer
-        </ParallaxText>
+      {/* <div className="absolute top-2 left-0 w-full z-[60] overflow-hidden">
+        <div className="mt-24">
+          <ParallaxText direction={500} baseVelocity={-1}>
+            MUHAMMAD RAFIF
+          </ParallaxText>
+        </div>
       </div> */}
+
+      <div className="absolute top-2 left-0 w-full z-[60] overflow-hidden">
+        <div className="mt-24">
+          <ParallaxText direction={500} baseVelocity={-1}>
+            <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white tracking-tight">
+              MUHAMMAD RAFIF
+            </span>
+          </ParallaxText>
+        </div>
+      </div>
+
+
 
       {/* ⬇️ Juga turunkan z-index bagian Locate */}
       <motion.div
