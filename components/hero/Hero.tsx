@@ -16,12 +16,12 @@ export default function Hero() {
       animate="animate"
     >
       {/* ✅ Overlay image di atas segalanya */}
-      <Image
+      {/* <Image
         src="/images/hero-overlay.png"
         alt="Hero Overlay"
         fill
         className="absolute top-0 left-0 w-full h-full object-cover z-50 pointer-events-none"
-      />
+      /> */}
 
       <HeroGraphic />
       {/* <HeroText /> */}
