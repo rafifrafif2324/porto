@@ -7,44 +7,32 @@ import AnimateTitle from "../about/AnimateTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import { useWindowSize } from "@/hooks/useWindowSize"; // Pastikan path sesuai
+import { useWindowSize } from "@/hooks/useWindowSize"; // Sesuaikan path
 
 const certificates = [
   {
-    title: "Front-End Developer",
-    provider: "Dicoding",
+    title: "Business Intelligence",
+    provider: "Algoritma Data Science School",
     year: "2023",
     image: "/images/certificate-1.jpg",
   },
   {
-    title: "React Advanced",
-    provider: "Coursera",
+    title: "Full Stack Data Science",
+    provider: "Algoritma Data Science School",
     year: "2022",
     image: "/images/certificate-2.jpg",
   },
   {
-    title: "UI/UX Design Essentials",
-    provider: "Udemy",
+    title: "Publication Author",
+    provider: "ICCSCI",
     year: "2023",
     image: "/images/certificate-3.jpg",
   },
   {
-    title: "JavaScript Algorithms",
-    provider: "freeCodeCamp",
-    year: "2021",
+    title: "Publication Author",
+    provider: "ICICoS",
+    year: "2024",
     image: "/images/certificate-4.jpg",
-  },
-  {
-    title: "Web Design Fundamentals",
-    provider: "Codecademy",
-    year: "2022",
-    image: "/images/certificate-5.jpg",
-  },
-  {
-    title: "Node.js Crash Course",
-    provider: "YouTube",
-    year: "2021",
-    image: "/images/certificate-6.jpg",
   },
 ];
 
@@ -53,7 +41,7 @@ const Certificates = () => {
   const isMobile = width < 768;
 
   return (
-    <section className="py-16 px-4 md:px-10 max-w-7xl mx-auto mb-16">
+    <section className="py-16 px-4 md:px-10 max-w-7xl mx-auto mb-16 w-full">
       <AnimateTitle
         title="Certificates"
         className="text-left text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] font-bold leading-tight mb-8"
@@ -63,21 +51,20 @@ const Certificates = () => {
 
       {isMobile ? (
         // Mobile View: Swiper
-        <div className="w-full">
+        <div className="w-full overflow-visible">
           <Swiper
             modules={[Autoplay]}
             autoplay={{ delay: 3000 }}
             loop={true}
             spaceBetween={16}
-            slidesPerView={1.1}
-            centeredSlides={true}
+            slidesPerView={"auto"}
             grabCursor={true}
             className="w-full"
           >
             {certificates.map((cert, index) => (
-              <SwiperSlide key={index} className="!w-auto">
-                <div className="border rounded-xl p-4 shadow-md bg-zinc-900 hover:bg-zinc-800 text-white w-full max-w-xs mx-auto">
-                  <div className="mb-3 w-full h-32 relative">
+              <SwiperSlide key={index} className="w-full">
+                <div className="border rounded-xl p-4 shadow-md bg-zinc-900 hover:bg-zinc-800 text-white w-full">
+                  <div className="mb-3 w-full h-64 sm:h-72 md:h-80 lg:h-96 relative">
                     <Image
                       src={cert.image}
                       alt={cert.title}
@@ -85,9 +72,7 @@ const Certificates = () => {
                       className="object-contain rounded-lg"
                     />
                   </div>
-                  <h3 className="text-base font-semibold mb-1">
-                    {cert.title}
-                  </h3>
+                  <h3 className="text-base font-semibold mb-1">{cert.title}</h3>
                   <p className="text-sm text-gray-300">{cert.provider}</p>
                   <p className="text-sm text-gray-400">{cert.year}</p>
                 </div>
@@ -96,8 +81,8 @@ const Certificates = () => {
           </Swiper>
         </div>
       ) : (
-        // Desktop View: Marquee Animation
-        <div className="overflow-x-hidden">
+        // Desktop View: Marquee
+        <div className="overflow-x-hidden w-full">
           <motion.div
             className="flex gap-6 w-max"
             animate={{ x: ["0%", "-50%"] }}
@@ -121,7 +106,7 @@ const Certificates = () => {
                 }}
                 className="min-w-[240px] lg:min-w-[260px] border rounded-2xl p-4 shadow-md bg-zinc-900 hover:bg-zinc-800 text-white flex-shrink-0"
               >
-                <div className="mb-3 w-full h-32 relative">
+                <div className="mb-3 w-full h-44 sm:h-48 md:h-56 lg:h-64 relative">
                   <Image
                     src={cert.image}
                     alt={cert.title}
@@ -129,9 +114,7 @@ const Certificates = () => {
                     className="object-contain rounded-lg"
                   />
                 </div>
-                <h3 className="text-base font-semibold mb-1">
-                  {cert.title}
-                </h3>
+                <h3 className="text-base font-semibold mb-1">{cert.title}</h3>
                 <p className="text-sm text-gray-300">{cert.provider}</p>
                 <p className="text-sm text-gray-400">{cert.year}</p>
               </motion.div>
