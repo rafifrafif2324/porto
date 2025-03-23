@@ -6,6 +6,7 @@ import Hero from "@/components/hero/Hero"
 import Nav from "@/components/navbar/Nav"
 import Preload from "@/components/preload/Preload"
 import Projects from "@/components/projects/Projects"
+import Certificates from "@/components/certificates/Certificates"
 import { AnimatePresence } from "framer-motion"
 import { useEffect, useState } from "react"
 
@@ -46,6 +47,7 @@ export default function Home() {
         <main data-scroll-container className="flex flex-col items-center">
           <Hero />
           <About />
+          <Certificates />
           <Projects />
           <Contact />
         </main>
