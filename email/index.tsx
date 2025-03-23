@@ -38,7 +38,7 @@ export default function ContactEmail({
           <Section style={box}>
             <Column align="center">
               <Link style={headingLink} href={baseUrl}>
-                Coding with Afrizal
+                Muhammad Rafif
               </Link>
             </Column>
           </Section>

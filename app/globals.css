@@ -120,6 +120,14 @@
     transform: translate(-50%, -50%) rotate(15deg);
   }
 }
+/* globals.css */
+div::-webkit-scrollbar {
+  display: none;
+}
+div {
+  scrollbar-width: none; /* Firefox */
+}
+
 
 .globe-wrap {
   top: 50%;

@@ -1,7 +1,8 @@
-import { projects } from "@/lib/projectData"
-import ProjectCard from "./ProjectCard"
-import ProjectTitleAnimate from "./ProjectTitleAnimate"
-import ProjectButton from "./ProjectButton"
+
+import { projects } from "@/lib/projectData";
+import ProjectCard from "./ProjectCard";
+import ProjectTitleAnimate from "./ProjectTitleAnimate";
+import ProjectButton from "./ProjectButton";
 
 export default function Projects() {
   return (
@@ -20,10 +21,11 @@ export default function Projects() {
             tech={project.tech}
             repo={project.repo}
             projectLink={project.linkProject}
+            presentationLink={project.presentationLink}
           />
         ))}
       </div>
       <ProjectButton />
     </section>
-  )
+  );
 }
