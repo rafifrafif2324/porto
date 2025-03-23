@@ -15,14 +15,6 @@ export default function Hero() {
     bg-[url('/images/hero-bg.jpg')] bg-cover bg-center bg-no-repeat"
       animate="animate"
     >
-      {/* ✅ Overlay image di atas segalanya */}
-      {/* <Image
-        src="/images/hero-overlay.png"
-        alt="Hero Overlay"
-        fill
-        className="absolute top-0 left-0 w-full h-full object-cover z-50 pointer-events-none"
-      /> */}
-
       <HeroGraphic />
       {/* <HeroText /> */}
 
