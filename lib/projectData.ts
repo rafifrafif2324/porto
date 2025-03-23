@@ -5,7 +5,11 @@ export const projects = [
     title: "Project 1",
     description:
       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/images/project-1.png",
+    images: [
+      "/images/project-1.png",
+      "/images/project-1-2.png",
+      "/images/project-1-3.png"
+    ],
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS"],
     linkProject: "https://google.com",
     repo: "https://github.com/aafrzl",
@@ -16,7 +20,10 @@ export const projects = [
     title: "Project 2",
     description:
       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/images/project-2.png",
+    images: [
+      "/images/project-2.png",
+      "/images/project-2-2.png"
+    ],
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS"],
     linkProject: "https://google.com",
     repo: "https://github.com/aafrzl",
@@ -27,7 +34,10 @@ export const projects = [
     title: "Project 3",
     description:
       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/images/project-3.png",
+    images: [
+      "/images/project-3.png",
+      "/images/project-3.png",
+    ],
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS"],
     linkProject: "https://google.com",
     repo: "https://github.com/aafrzl",
@@ -37,10 +47,15 @@ export const projects = [
     slug: "project-4",
     title: "Project 4",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/images/project-4.png",
+      "brt ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua . brt ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+    images: [
+      "/images/1.png",
+      "/images/2.png",
+      "/images/3.png",
+      "/images/4.png"
+    ],
     tech: ["React", "TypeScript", "Next.js", "TailwindCSS"],
     linkProject: "https://google.com",
     repo: "https://github.com/aafrzl",
   },
-]
+];

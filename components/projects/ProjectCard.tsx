@@ -1,32 +1,59 @@
-
-import { GithubIcon, LinkIcon } from "lucide-react";
+import { GithubIcon, LinkIcon, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import Slider from "react-slick";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import {
   projectCardAnimation,
   projectCardDescriptionAnimation,
-  projectCardImageAnimation,
   projectCardLinksAnimation,
   projectCardTechAnimation,
   projectCardTitleAnimation,
 } from "./animationCard";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./custom-slider.css"; // Buat styling custom dot & arrow
+
 interface ProjectCardProps {
   title: string;
   description: string;
-  image: string;
+  images: string[];
   tech: string[];
   repo: string;
   projectLink: string;
 }
 
+// Custom Arrow Components
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute z-20 right-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black text-white p-2 rounded-full"
+    >
+      <ChevronRight size={20} />
+    </button>
+  );
+};
+
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute z-20 left-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black text-white p-2 rounded-full"
+    >
+      <ChevronLeft size={20} />
+    </button>
+  );
+};
+
 export default function ProjectCard({
   title,
   description,
-  image,
+  images,
   tech,
   repo,
   projectLink,
@@ -41,103 +68,92 @@ export default function ProjectCard({
     }
   }, [ctrls, isInView]);
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "120px",
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    appendDots: (dots: React.ReactNode) => (
+      <div className="mt-2 flex justify-center">{dots}</div>
+    ),
+    customPaging: () => (
+      <div className="w-3 h-3 mx-1 rounded-full bg-zinc-400 slick-dot" />
+    ),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { centerPadding: "80px" },
+      },
+      {
+        breakpoint: 768,
+        settings: { centerPadding: "40px" },
+      },
+      {
+        breakpoint: 480,
+        settings: { centerPadding: "20px" },
+      },
+    ],
+  };
+
   return (
     <motion.div
       ref={ref}
       animate={ctrls}
       initial="hidden"
       variants={projectCardAnimation}
-      whileHover={{
-        scale: 1.03,
-        boxShadow: "0px 10px 20px rgba(0,0,0,0.15)",
-      }}
+      whileHover={{ scale: 1.03, boxShadow: "0px 10px 20px rgba(0,0,0,0.15)" }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      aria-hidden="true"
-      className="relative z-10 h-[550px] w-full items-stretch justify-center overflow-hidden rounded-3xl border border-foreground/20 bg-zinc-200 dark:bg-zinc-800 transition-all duration-300 ease-in-out"
+      className="relative z-10 w-full rounded-3xl border border-foreground/20 bg-zinc-200 dark:bg-zinc-800 p-6"
     >
-      <motion.div
-        ref={ref}
-        animate={ctrls}
-        initial="hidden"
-        variants={projectCardImageAnimation}
-        aria-hidden="true"
-      >
-        <Image
-          width={1000}
-          height={600}
-          src={image}
-          alt={title}
-          className="absolute -bottom-2 right-0 w-[85%] object-contain md:w-[60%] lg:max-w-[55%]"
-        />
-      </motion.div>
-
-      <motion.div
-        ref={ref}
-        animate={ctrls}
-        initial="hidden"
-        variants={projectCardLinksAnimation}
-        aria-hidden="true"
-        className="absolute left-0 top-0 ml-8 mt-6 flex items-center justify-center gap-4 lg:ml-14 lg:mt-10"
-      >
-        <Link
-          href={repo}
-          target="_blank"
-          className="rounded-full bg-foreground p-2 transition-all duration-300 ease-in-out hover:bg-foreground/50"
-          aria-label="Open Github Repo"
-        >
-          <GithubIcon className="h-6 w-6 text-zinc-100 dark:text-zinc-800 md:h-8 md:w-8 lg:h-10 lg:w-10" />
-        </Link>
-        <Link
-          href={projectLink}
-          target="_blank"
-          className="rounded-full bg-foreground p-2 transition-all duration-300 ease-in-out hover:bg-foreground/50"
-          aria-label="Open Live Demo"
-        >
-          <LinkIcon className="h-6 w-6 text-zinc-100 dark:text-zinc-800 md:h-8 md:w-8 lg:h-10 lg:w-10" />
-        </Link>
-      </motion.div>
-
-      <div className="absolute left-10 top-32 mb-10 ml-0 text-foreground lg:top-52 lg:mb-14 lg:ml-4">
-        <h3 className="max-w-[90%] text-5xl font-bold leading-none text-foreground md:text-4xl md:leading-none lg:max-w-[450px] lg:text-5xl lg:leading-none">
-          <motion.span
-            ref={ref}
-            animate={ctrls}
-            initial="hidden"
-            variants={projectCardTitleAnimation}
-            aria-hidden="true"
-          >
-            {title}
-          </motion.span>
-        </h3>
-        <p className="mt-4 w-[90%] max-w-[454px] text-xs font-semibold text-foreground/50">
-          <motion.span
-            ref={ref}
-            animate={ctrls}
-            initial="hidden"
-            variants={projectCardDescriptionAnimation}
-            aria-hidden="true"
-          >
-            {description}
-          </motion.span>
-        </p>
-        <motion.div
-          ref={ref}
-          animate={ctrls}
-          initial="hidden"
-          variants={projectCardTechAnimation}
-          aria-hidden="true"
-          className="mt-9 flex gap-4"
-        >
-          {tech.map((tech, index) => (
-            <p
-              key={index}
-              className="text-xs font-semibold text-foreground/50 md:text-sm"
-            >
-              {tech}
-            </p>
+      <div className="mb-4 relative">
+        <Slider {...sliderSettings}>
+          {images.map((imgSrc, idx) => (
+            <div key={idx} className="px-4">
+              <Image
+                src={imgSrc.startsWith("/") ? imgSrc : `/images/projects/${imgSrc}`}
+                alt={`${title} image ${idx + 1}`}
+                width={800}
+                height={450}
+                className="object-contain w-full h-auto rounded-xl"
+              />
+            </div>
           ))}
-        </motion.div>
+        </Slider>
       </div>
+
+      <h3 className="text-3xl font-bold text-foreground mb-2">
+        <motion.span ref={ref} animate={ctrls} initial="hidden" variants={projectCardTitleAnimation}>
+          {title}
+        </motion.span>
+      </h3>
+      <p className="text-sm text-foreground/70">
+        <motion.span ref={ref} animate={ctrls} initial="hidden" variants={projectCardDescriptionAnimation}>
+          {description}
+        </motion.span>
+      </p>
+
+      <motion.div ref={ref} animate={ctrls} initial="hidden" variants={projectCardLinksAnimation} className="mb-4 flex items-center gap-4 mt-4">
+        <Link href={repo} target="_blank" aria-label="Open Github Repo" className="rounded-full bg-foreground p-2 hover:bg-foreground/50">
+          <GithubIcon className="h-6 w-6 text-zinc-100 dark:text-zinc-800" />
+        </Link>
+        <Link href={projectLink} target="_blank" aria-label="Open Live Demo" className="rounded-full bg-foreground p-2 hover:bg-foreground/50">
+          <LinkIcon className="h-6 w-6 text-zinc-100 dark:text-zinc-800" />
+        </Link>
+      </motion.div>
+
+      <motion.div ref={ref} animate={ctrls} initial="hidden" variants={projectCardTechAnimation} className="mt-4 flex flex-wrap gap-3">
+        {tech.map((item, index) => (
+          <span key={index} className="text-xs font-semibold text-foreground/50 bg-foreground/10 px-3 py-1 rounded-full">
+            {item}
+          </span>
+        ))}
+      </motion.div>
     </motion.div>
   );
 }

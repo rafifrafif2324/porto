@@ -9,21 +9,21 @@ const font = Work_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    template: "Coding with Afrizal | %s",
-    default: "Coding with Afrizal | Frontend Developer",
+    template: "Muhammad Rafif | %s",
+    default: "Muhammad Rafif | Data Scientist",
   },
   description:
     "A seasoned frontend web developer with a passion for creating engaging and interactive websites.",
   metadataBase: new URL("https://aafrzl.my.id"),
   openGraph: {
     title: {
-      template: "Coding with Afrizal | %s",
-      default: "Coding with Afrizal | Frontend Developer",
+      template: "Muhammad Rafif| %s",
+      default: "Muhammad Rafif | Data Scientist",
     },
     description:
       "A seasoned frontend web developer with a passion for creating engaging and interactive websites.",
     url: "https://aafrzl.my.id",
-    siteName: "Coding with Afrizal",
+    siteName: "Muhammad Rafif",
     images: [
       {
         url: "/public/images/og-images.jpg",
